@@ -1,0 +1,48 @@
+# Spring相关配置
+spring:
+  # Spring应用配置
+  application:
+    # 设置当前SpringBoot应用的名称，用于服务识别、日志、微服务注册等场景
+    name: tilas-web-management
+  # Servlet相关配置，文件上传大小限制
+  servlet:
+    multipart:
+      # 单个文件最大上传大小
+      max-file-size: 10MB
+      # 请求最大上传大小
+      max-request-size: 100MB
+
+  # 数据源配置，连接MySQL数据库
+  datasource:
+    # 数据库连接地址
+    # jdbc:mysql:// 协议；localhost:3306 数据库地址端口；tilas 要连接的数据库库名
+    url: jdbc:mysql://localhost:3306/tilas
+    # MySQL数据库登录用户名
+    username: root
+    # MySQL数据库登录密码
+    password: 123456
+    # MySQL8.0及以上版本驱动全限定类名，cj代表mysql‑connector‑java 8.x版本
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+# MyBatis框架配置
+mybatis:
+  configuration:
+    # 指定MyBatis日志输出实现类，将执行的SQL语句、参数、返回结果打印到控制台，方便开发调试
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 开启驼峰命名自动映射
+    # 数据库下划线字段例如：emp_name → Java实体类驼峰属性 empName，自动完成映射，不用手动写别名
+    map-underscore-to-camel-case: true
+
+#配置事务管理日志级别
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+#阿里云OSS配置
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: java-web127
+    region: cn-beijing
+
+

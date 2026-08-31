@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhy.mapper.EmpExprMapper">
+    <insert id="InsertExprlist">
+        insert into Emp_expr(emp_id, begin, end, company, job) values
+        <foreach collection="list" item="expr" separator=",">
+            (#{expr.empId}, #{expr.begin}, #{expr.end}, #{expr.company}, #{expr.job})
+        </foreach>
+    </insert>
+    <delete id="deleteEmpByEmpids">
+        delete from emp_expr where emp_id in
+        <foreach item="empId" collection="Empids" separator="," open="(" close=")">
+            #{empId}
+        </foreach>
+    </delete>
+</mapper>
